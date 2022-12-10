@@ -16,17 +16,18 @@ public:
 	{
 	/*	this->size = size;
 		this->str = new char[size] {};
+		*/
 		cout.width(WIDTH);
 		cout << left << "DefaultConstructor:" << this << endl;
-	*/
+	
 	}
-	String(const char* str):size(strlen(str)+1),str(new char[size]{})
+	String(const char* str):String(strlen(str)+1)
 	{
 		strcpy(this->str, str);
 		cout.width(WIDTH);
 		cout << left << "Constructor:" << this << endl;
 	}
-	String(const String&other):size(other.size), str(new char[size] {})
+	String(const String&other):String(other.str)
 	{
 		strcpy(this->str, other.str);
 		cout.width(WIDTH);
