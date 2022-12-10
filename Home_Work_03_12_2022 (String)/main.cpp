@@ -12,29 +12,33 @@ public:
 
 	// Constructors:
 
-	explicit String(size_t size = 80)
+	explicit String(size_t size = 80):size(size),str(new char[size]{})
 	{
-		this->size = size;
+	/*	this->size = size;
 		this->str = new char[size] {};
 		cout.width(WIDTH);
 		cout << left << "DefaultConstructor:" << this << endl;
+	*/
 	}
-	String(const char* str)
+	String(const char* str):size(strlen(str)+1),str(new char[size]{})
 	{
-		this->size = strlen(str)+1;
-		this->str = new char[size] {};
 		strcpy(this->str, str);
 		cout.width(WIDTH);
 		cout << left << "Constructor:" << this << endl;
 	}
-	String(const String&other)
+	String(const String&other):size(other.size), str(new char[size] {})
 	{
-		this->size = other.size;
-		this->str = new char[size] {};
 		strcpy(this->str, other.str);
 		cout.width(WIDTH);
 		cout << left << "CopyConstructor:" << this << endl;
 	}
+	/*String(String&& other) :size(other.size), str(new char[size] {})
+	{
+		strcpy(this->str, other.str);
+		cout.width(WIDTH);
+		cout << left << "CopyConstructor:" << this << endl;
+	}
+	*/
 	~String()
 	{
 		delete[] str;
@@ -71,6 +75,7 @@ public:
 void main()
 {
 	setlocale(LC_ALL, " ");
+	
 	String str1(10);
 	str1.print();
 
